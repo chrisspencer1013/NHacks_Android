@@ -28,7 +28,7 @@ The important thing to get out of this is that this class `extends` AppCompatAct
 ***REMEMBER TO MAKE USE OF REFACTORING/RENAMING WITHIN ANDROID STUDIO***
 
 7. Create 3 buttons, change text, rename ids
-8. Contraint layout stuff (ugh, this is just kinda trial and error for the most part)
+8. Constraint layout stuff (ugh, this is just kinda trial and error for the most part)
 
 **BUILD!** 
 
@@ -36,25 +36,27 @@ The important thing to get out of this is that this class `extends` AppCompatAct
 
 Now for **FUNCTIONALITY!**
 What do we want to do? Use case time!
-  - User picks an option
+  - User picks an option (with buttons)
   - Computer picks an option
     - any ideas on how?
   - Compare two options, determine winner
   - Tell user results
     - any ideas on how?
 
-How do we add functionality? We want to listen for an event! This event will be an `onClick`, which means we will use an `OnClickListener` *(If this seems like a bit of a leap in logic, you are kinda right. In the real world, you'd likely be looking though documentation and googling to find what works for you)*
+*How do we add functionality to the buttons?* 
 
-For this we will use an interface. similar to inheritance (extends), but different. *If you want more on that, google it, no joke there are a million great resources*
+We want to listen for an event! The event that occurs when you click a button is an `onClick` event, which means we will use an `OnClickListener` to listen for this event. *(If this seems like a bit of a leap in logic, you are kinda right. In the real world, you'd likely be looking though documentation and googling to find out what information you need.)*
+
+For this we will use an interface. similar to inheritance (`extends`), but different. *If you want more on that, google it, no joke there are a million great resources*:
 
 ```java
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 ```
-When you do this, Android Studio will yell at you. Right clicking on the error will give you the option to override. This will generate code for you :)
+When you do this, Android Studio will yell at you with an error. Right clicking on the error will give you the option to override. This will generate code for you :)     (<-- I can explain this more if anyone is interested)
 
-Now we have the `onClick` function to work with! We will need to override the original (just like the `onCreate` earlier, it was using the functionality of another class/interface)
+Now we have the `onClick` method to work with! We will need to override the original (just like the `onCreate` earlier, it was using the functionality of another class/interface)
 
-So within our `MainActivity` class, we will put in the following function:
+So within our `MainActivity` class, we will put in the following method:
 
 ```java
     @Override
@@ -80,7 +82,7 @@ and we will associate each of the buttons with it by adding an onclick event to 
 
 ```
 
-Let's store some information from the view that is passed with the function.
+Let's store some information from the view that is passed with the method.
 
 ```java
     @Override
@@ -91,7 +93,7 @@ Let's store some information from the view that is passed with the function.
 
     }
 ```
-Autocomplete and intelisense is your friend! (most of the time...)
+Autocomplete and intellisense is your friend! (most of the time...)
 
 The id doesn't really mean anything to us, but it is a unique identifier for this button that we can use in the next few steps.
 
@@ -248,7 +250,7 @@ So the win cases can be applied in logic like this using the logical and operato
   }
 ```
 
-*Is there a better way to do this?* We are repeating the same exact code in each else if statment. 
+*Is there a better way to do this?* We are repeating the same exact code in each else if statement. 
 
 We can use the logical or `||` in this case where one or the other might be true. 
 
@@ -370,7 +372,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 ```
 
 
-`XML` (contraints might be different, this is from a slightly different project)
+`XML` (constraints might be different, this is from a slightly different project)
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -428,7 +430,7 @@ But are we really done? Never! Time to refactor! No code is perfect, and this ha
 *How could we improve this? Think creatively!* 
 
 Ways to improve:
-- Use `ENUM` to stanardize and clean up choices (with built in random choices!)
+- Use `ENUM` to standardize and clean up choices (with built in random choices!)
 - Add photos of rock, paper, and scissors to show what the user and computer chose
 - Refactor -> Pull out common functionality to reusable methods
 - Multiplayer! Over bluetooth or wifi!
