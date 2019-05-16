@@ -137,7 +137,9 @@ Similar with the other cases, but using an `else` keyword to tell the computer t
 ```
 
 **BUILD!**
-Wait, this is kind of a bummer. The app still doesn't do anything. Sure, the app knows what the user selected, but how do we verify that ourselves? Let's show the user what they selected with a toast message.
+Wait, this is kind of a bummer. The app still doesn't do anything. Sure, the app knows what the user selected, but how do we verify that ourselves? *ideas? what have you seen in apps you use?*
+
+We are gonna go with a toast message to show what the user selected.
 
 First, import the functionality:
 
@@ -185,7 +187,7 @@ Then we can access its functionality to randomly choose an option:
     int computerInt = rand.nextInt(2); //Random int from 0 to 2 (inclusive)
 ```
 
-Instead of using if/elseif logic, do we have any other options for assigning a string based upon which integer was picked by the computer?
+Instead of using if/elseif logic again, do we have any other options for assigning a string based upon which integer was picked by the computer?
 
 Yes we do! A `switch`/`case` statement!
 
@@ -225,7 +227,7 @@ The first case is a tie. We have a tie when both choices are the same, so we wil
 ```
 The second case is winning. Where does that happen? 
 
-Let's map it out really quick so we can see all cases. This can be read as right column (user), intersection, top row (computer) -> so the user's `Rock` `Loses` against the computer's `Paper`
+Let's map it out really quick so we can see all cases. This can be read as right column (user), intersection, top row (computer) -> so the user's `Rock` `Loses` against the computer's `Paper`. This is overkill, but it helps us to see every win condition in a single place. This can be a valuable tool when things get more complex than 3 options. 
 
 |          | Rock | Paper | Scissors |
 |----------|:----:|:-----:|:--------:|
@@ -254,7 +256,7 @@ So the win cases can be applied in logic like this using the logical and operato
 
 We can use the logical or `||` in this case where one or the other might be true. 
 
-Here is a much better and more maintainable piece of code that does the same thing:
+Here is a much better and more maintainable piece of code that accomplishes the same thing. This is what was meant earlier by "keep logic tight":
 
 ```java
         else if ((userChoice == "Paper" && computerChoice == "Rock")
@@ -265,9 +267,9 @@ Here is a much better and more maintainable piece of code that does the same thi
         }
 ```
 
-Okay now let's repeat all that work for losing cases. *Unless someone was a better idea...*
+Mkay, now let's repeat all that work and find all losing cases. *Unless someone was a better idea...*
 
-Let's just be lazy and use `else`!
+Let's just be lazy and use `else` to cover all other cases.
 
 Now the entire block looks like this:
 
@@ -289,7 +291,7 @@ Now the entire block looks like this:
         }
 ```
 
-One more down, and for the last bit of logic: display who won. *Didn't we do something like this before?* 
+One more down, and for the last bit of logic: display the results. *Didn't we do something like this before?* 
 
 Toasts! Let's do it again... in fact, let's just move it and change what we are outputting. We don't need to see the user's choice anymore.
 
