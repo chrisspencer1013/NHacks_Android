@@ -1,4 +1,4 @@
-# MHacks_Android
+# NHacks_Android
 ## Hackathon - Intro to Android
 
 This is all written very last minute, apologies for spelling or logic mistakes, bear with me
