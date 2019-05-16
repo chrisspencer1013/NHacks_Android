@@ -1,0 +1,105 @@
+package com.example.integral;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.HashMap;
+import java.util.Random;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    public enum choice
+    {
+        ROCK, PAPER, SCISSORS;
+
+        public static choice getRandomChoice(){
+            Random rand = new Random();
+            return values()[rand.nextInt(values().length)];
+        }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        choice userChoice = null;
+        int clickedId = v.getId();
+
+        //TODO: Use mapping?
+        ImageView userImage;
+        userImage = findViewById(R.id.userImage);
+
+        if (clickedId == R.id.buttonPaper) {
+            userChoice = choice.PAPER;
+            userImage.setImageResource(R.drawable.paper1);
+        }
+        else if (clickedId == R.id.buttonRock) {
+            userChoice = choice.ROCK;
+            userImage.setImageResource(R.drawable.rock1);
+        }
+        else if (clickedId == R.id.buttonScissor) {
+            userChoice = choice.SCISSORS;
+            userImage.setImageResource(R.drawable.scissors);
+        }
+
+        //TODO:cases where userChoice isn't set shouldn't exist,
+        //      but I am not sure of best practice here
+
+        choice computerChoice = computerTurn();
+
+        determineWinner(userChoice, computerChoice);
+    }
+
+    private void displayToast(String result) {
+        Toast.makeText(MainActivity.this,
+                "You " + result + "!",
+                Toast.LENGTH_SHORT).show();
+    }
+
+    private void determineWinner(choice userChoice, choice computerChoice) {
+        String result;
+        if (userChoice == computerChoice) {
+            result = "Tied";
+        }
+        else if ((userChoice == choice.PAPER && computerChoice == choice.ROCK)
+                || (userChoice == choice.ROCK && computerChoice == choice.SCISSORS)
+                || (userChoice == choice.SCISSORS && computerChoice == choice.PAPER))
+        {
+            result = "Won";
+        }
+        else{
+            result = "Lose";
+        }
+        displayToast(result);
+    }
+
+    public choice computerTurn(){
+        Random rand = new Random();
+        choice computerChoice = choice.getRandomChoice();
+
+        ImageView computerImage;
+        computerImage = findViewById(R.id.computerImage);
+
+        if (computerChoice == choice.PAPER)
+            computerImage.setImageResource(R.drawable.paper1);
+        else if (computerChoice == choice.ROCK)
+            computerImage.setImageResource(R.drawable.rock1);
+        else if (computerChoice == choice.SCISSORS)
+            computerImage.setImageResource(R.drawable.scissors);
+
+        return computerChoice;
+    }
+
+
+}
