@@ -4,7 +4,7 @@
 1. Install android studio from [here](https://developer.android.com/studio)
     - make sure to install with an android emulator if you are planning on using it (you can do it later too)
 2. Select `Start a new Android Studio project`
-3. Select `Empty Activity` (I encourage you to check out some of the boilerplates next time next time). 
+3. Select `Empty Activity` (I encourage you to check out some of the boilerplates next time!) 
 4. Configure your project:
   - We will name it `RPS`
   - Don't modify the package name for now
@@ -12,7 +12,9 @@
   - Language: `Java` 
   - API level: 21 (5.0 Lollipop)
 
-Notice that we already have quite a bit here. We don't need to worry about most of this for now, so in the interest of time, I will proceed. If you are curious as to what any of this is, let me know.
+Notice that we already have quite a bit here. We don't need to worry about most of this for now, so in the interest of time, I will proceed. If you are curious as to what any of this is, let me know. 
+
+**Tangent:** everything created for you was done for a reason. Again, google can help, but there is a really useful function built in to Android Studio (and many other IDEs) -> Right click on a keyword that you want to know more about and select 'Go to' and 'Definition'. This will bring you to where the keyword is defined, which can help in your exploration of Android programming.
 
 5. Open up your main java file
 
@@ -20,12 +22,12 @@ The important thing to get out of this is that this **class** `extends` AppCompa
 
 *Does anyone know what a class is?* If not, let's google it together and find some information on it.
 
-(Just in case if you can't find much: [Here is one](https://medium.freecodecamp.org/object-oriented-programming-concepts-21bb035f7260), [Here is another](https://dev.to/wathsara/java-object-oriented-programing-oop-32ao))
+(Just in case if you can't find much: [Here is one](https://medium.freecodecamp.org/object-oriented-programming-concepts-21bb035f7260), and [here is another](https://dev.to/wathsara/java-object-oriented-programing-oop-32ao))
 
 6. Check out the XML 
 *(I will show how to get to text view and help explain what is going on here)*
 
-**BUILD!** (hello world is already there, congrats!)
+**BUILD!** (you've built a hello world app, congrats!)
   
 ***REMEMBER TO MAKE USE OF REFACTORING/RENAMING WITHIN ANDROID STUDIO***
 
@@ -51,7 +53,9 @@ We want to listen for an event! An event in android is a lot like an event in re
 
 The event that occurs when you click a button is an `onClick` event, which means we will use an `OnClickListener` to listen for this event. *(If this seems like a bit of a leap in logic, you are kinda right. In the real world, you'd likely be looking though documentation and googling to find out what information you need.)*
 
-For this we will use an interface. similar to inheritance (`extends`), but different. TODO
+For this we will use an interface. similar to inheritance (`extends`), but different. Back to google! Stack overflow is also an incredible resource!
+
+Just in case, here's a good link: https://stackoverflow.com/questions/10839131/implements-vs-extends-when-to-use-whats-the-difference
 
 ```java
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
@@ -127,7 +131,7 @@ Now for some conditional logic to assign the correct string. When the id of the 
 ```java
     @Override
     public void onClick(View v) {
-        String userChoice = null; // Note: this is here due to 'scope' (TODO look it up my dude)
+        String userChoice = null; // Note: this is here due to 'scope'
         int clickedId = v.getId();
 
         if (clickedId == R.id.btnPaper) {
@@ -160,7 +164,15 @@ Similar with the other cases, but using an `else` keyword to tell the computer t
 **BUILD!**
 Wait, this is kind of a bummer. The app still doesn't do anything. Sure, the app knows what the user selected, but how do we verify that ourselves? 
 
-TODO: logging
+Let's log it! After the block of code we just finished, let's call Log at the [approprate level](https://stackoverflow.com/questions/7959263/android-log-v-log-d-log-i-log-w-log-e-when-to-use-each-one)
+
+```java
+    Log.d("RPS", userChoice);
+```
+
+**BUILD!** 
+
+This time we can see our choice being output to the log (LogCat in the bottom view of Android Studio)
 
 First, import the functionality:
 
@@ -191,7 +203,7 @@ Then let's use it to display a toast message with our new strings:
 
 **BUILD!** Does it work?
 
-If no ... *oof* TODO
+If no ... *oof* Make sure to check for semicolons at the end of lines. The red squigglies should help you to pinpoint where the issue is. If not, raise your hand and we can help!
 
 If yes, YAY! We completed the first task of our use case! Onto the next: making the computer pick an option.
 
@@ -290,7 +302,7 @@ Here is a much better and more maintainable piece of code that accomplishes the 
 
 Mkay, now let's repeat all that work and find all losing cases. *Unless someone was a better idea...*
 
-Let's just be lazy and use `else` to cover all other cases.
+Let's be lazy (aka super efficient :point_left::sunglasses::point_right:) and use `else` to cover all other cases.
 
 Now the entire block looks like this:
 
@@ -312,12 +324,12 @@ Now the entire block looks like this:
         }
 ```
 
-One more down, and for the last bit of logic: display the results. *ideas? what have you seen in apps you use?* 
+One more down, and for the last bit of logic: display the results. *any ideas? what have you seen in apps you use?* 
 
-Toasts! TODO
+Toast messages! 
 
 ```java
-Toast.makeText(MainActivity.this, results, Toast.LENGTH_SHORT).show();
+    Toast.makeText(MainActivity.this, results, Toast.LENGTH_SHORT).show();
 ```
 
 And we are "done"! Here is the code we came up with:
@@ -457,3 +469,4 @@ Ways to improve:
 - Add photos of rock, paper, and scissors to show what the user and computer chose
 - Refactor -> Pull out common functionality to reusable methods
 - Multiplayer! Over bluetooth or wifi!
+- clean up user/computer choice comparison with use of variables
