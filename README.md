@@ -1,8 +1,6 @@
 # NHacks_Android
 ## Hackathon - Intro to Android
 
-This is all written very last minute, apologies for spelling or logic mistakes, bear with me
-
 1. Install android studio from [here](https://developer.android.com/studio)
     - make sure to install with an android emulator if you are planning on using it (you can do it later too)
 2. Select `Start a new Android Studio project`
@@ -14,14 +12,18 @@ This is all written very last minute, apologies for spelling or logic mistakes, 
   - Language: `Java` 
   - API level: 21 (5.0 Lollipop)
 
-5. Open up your main java file
-
 Notice that we already have quite a bit here. We don't need to worry about most of this for now, so in the interest of time, I will proceed. If you are curious as to what any of this is, let me know.
 
-The important thing to get out of this is that this class `extends` AppCompatActivity, and upon creation it invokes `setContentView`, which will link it to our `activity_main.xml`
+5. Open up your main java file
+
+The important thing to get out of this is that this **class** `extends` AppCompatActivity, and upon creation it invokes `setContentView`, which will link it to our `activity_main.xml`, which defines how our application will be layed out as well as some functionality. You will see this in the upcoming steps.
+
+*Does anyone know what a class is?* If not, let's google it together and find some information on it.
+
+(Just in case if you can't find much: [Here is one](https://medium.freecodecamp.org/object-oriented-programming-concepts-21bb035f7260), [Here is another](https://dev.to/wathsara/java-object-oriented-programing-oop-32ao))
 
 6. Check out the XML 
-(Show how to get to text view)
+*(I will show how to get to text view and help explain what is going on here)*
 
 **BUILD!** (hello world is already there, congrats!)
   
@@ -45,16 +47,35 @@ What do we want to do? Use case time!
 
 *How do we add functionality to the buttons?* 
 
-We want to listen for an event! The event that occurs when you click a button is an `onClick` event, which means we will use an `OnClickListener` to listen for this event. *(If this seems like a bit of a leap in logic, you are kinda right. In the real world, you'd likely be looking though documentation and googling to find out what information you need.)*
+We want to listen for an event! An event in android is a lot like an event in real life. Let's look at the use case of "I went to the store". "Entering the store" or "purchasing 15 frozen pizza" could be events apart of that use case. Similarly in android, event occur in execution of a use case. Examples could be: changing focus to another app or section of the app, pressing a key, or *clicking a button*.
 
-For this we will use an interface. similar to inheritance (`extends`), but different. *If you want more on that, google it, no joke there are a million great resources*:
+The event that occurs when you click a button is an `onClick` event, which means we will use an `OnClickListener` to listen for this event. *(If this seems like a bit of a leap in logic, you are kinda right. In the real world, you'd likely be looking though documentation and googling to find out what information you need.)*
+
+For this we will use an interface. similar to inheritance (`extends`), but different. TODO
 
 ```java
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 ```
-When you do this, Android Studio will yell at you with an error. Right clicking on the error will give you the option to override. This will generate code for you :)     (<-- I can explain this more if anyone is interested)
 
-Now we have the `onClick` method to work with! We will need to override the original (just like the `onCreate` earlier, it was using the functionality of another class/interface)
+When you do this, Android Studio will yell at you with an error. Right clicking on the error will give you the option to override. This will generate code for you :) 
+
+When we override a method, we are taking the inherited class from the parent and overriding it to do something new. A good example would be from the animal class earlier. Most animals can run, but they all run at different speeds. Overriding the `run()` method could look like this:
+
+Original:
+```java
+    public void run(){
+        System.out.println("The animal is running");
+    }
+```
+Overriding it for a slower animal:
+```java
+    @override
+    public void run() {
+        System.out.println("The animal is running slowly");
+    }
+```
+
+Back to android! Now we have the `onClick` method to work with! We will need to override the original (just like the `onCreate` earlier, it was using the functionality of another class/interface with a twist)
 
 So within our `MainActivity` class, we will put in the following method:
 
@@ -76,7 +97,7 @@ and we will associate each of the buttons with it by adding an onclick event to 
         android:layout_marginStart="52dp"
         android:layout_marginBottom="64dp"
         android:text="Scissors"
-    --> android:onClick="onClick"
++       android:onClick="onClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -95,11 +116,11 @@ Let's store some information from the view that is passed with the method.
 ```
 Autocomplete and intellisense is your friend! (most of the time...)
 
-The id doesn't really mean anything to us, but it is a unique identifier for this button that we can use in the next few steps.
+Initially the id doesn't look like much to us. It's just a bunch of numbers, right? Not quite! This number uniquely identifies each button, meaning we can always use this number to trace back to which was pressed.
 
-Next is to assign each button's id to a choice of Rock, Paper, or Scissors. *How can we do this?*
+Next is to use that id to assign a choice of Rock, Paper, or Scissors to each. *How can we do this?*
 
-One way would be strings. This allows us to have a human-readable choice instead of just a big number (another way that I like is using an `ENUM`, more on that later)
+One way would be strings. This allows us to have a human-readable choice instead of just a big number.
 
 Now for some conditional logic to assign the correct string. When the id of the clicked object is the same as the id of one of the buttons, we need to set the variable `userChoice` to capture that for later. We will do this with an equality operator `==`
 
@@ -137,9 +158,9 @@ Similar with the other cases, but using an `else` keyword to tell the computer t
 ```
 
 **BUILD!**
-Wait, this is kind of a bummer. The app still doesn't do anything. Sure, the app knows what the user selected, but how do we verify that ourselves? *ideas? what have you seen in apps you use?*
+Wait, this is kind of a bummer. The app still doesn't do anything. Sure, the app knows what the user selected, but how do we verify that ourselves? 
 
-We are gonna go with a toast message to show what the user selected.
+TODO: logging
 
 First, import the functionality:
 
@@ -170,7 +191,7 @@ Then let's use it to display a toast message with our new strings:
 
 **BUILD!** Does it work?
 
-If no ... *oof*
+If no ... *oof* TODO
 
 If yes, YAY! We completed the first task of our use case! Onto the next: making the computer pick an option.
 
@@ -291,9 +312,9 @@ Now the entire block looks like this:
         }
 ```
 
-One more down, and for the last bit of logic: display the results. *Didn't we do something like this before?* 
+One more down, and for the last bit of logic: display the results. *ideas? what have you seen in apps you use?* 
 
-Toasts! Let's do it again... in fact, let's just move it and change what we are outputting. We don't need to see the user's choice anymore.
+Toasts! TODO
 
 ```java
 Toast.makeText(MainActivity.this, results, Toast.LENGTH_SHORT).show();
