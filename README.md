@@ -172,36 +172,9 @@ Let's log it! After the block of code we just finished, let's call Log at the [a
 
 **BUILD!** 
 
-This time we can see our choice being output to the log (LogCat in the bottom view of Android Studio)
+This time we should be able to see our choice being output to the log (LogCat in the bottom view of Android Studio)
 
-First, import the functionality:
-
-```java
-import android.widget.Toast;
-```
-
-Then let's use it to display a toast message with our new strings:
-
-```java
-    @Override
-    public void onClick(View v) {
-        String userChoice = null;
-        int clickedId = v.getId();
-
-        if (clickedId == R.id.btnPaper) {
-            userChoice = "Paper";
-        }
-        else if (clickedId == R.id.btnRock) {
-            userChoice = "Rock";
-        }
-        else if (clickedId == R.id.btnScissors) {
-            userChoice = "Scissors";
-        }
-        Toast.makeText(MainActivity.this, userChoice, Toast.LENGTH_SHORT).show();
-    }
-```
-
-**BUILD!** Does it work?
+Does it work?
 
 If no ... *oof* Make sure to check for semicolons at the end of lines. The red squigglies should help you to pinpoint where the issue is. If not, raise your hand and we can help!
 
@@ -326,7 +299,15 @@ Now the entire block looks like this:
 
 One more down, and for the last bit of logic: display the results. *any ideas? what have you seen in apps you use?* 
 
-Toast messages! 
+For this we will use Toast messages. 
+
+First, import the functionality:
+
+```java
+import android.widget.Toast;
+```
+
+Then let's use it to display a toast message:
 
 ```java
     Toast.makeText(MainActivity.this, results, Toast.LENGTH_SHORT).show();
